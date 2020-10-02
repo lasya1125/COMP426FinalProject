@@ -50,33 +50,40 @@ export const renderHeroEditForm = function(hero) {
                     </div>
                 </div>
 
+                <div class="control">
+                    <label class="label">Diet Plan</label>
+                    <div class="select is-rounded">
+                        <select>
+                        <option value="balanced">Balanced</option>
+                        <option value="high-fiber">High-Fiber</option>
+                        <option value="high-protein">High-Protein</option>
+                        <option value="low-carb">Low-Carb</option>
+                        <option value="low-fat">Low-Fat</option>
+                        <option value="low-sodium">Low-Sodium</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="field">
-                    <label class="label">Diet Plan</label>
+                    <label class="label">Height</label>
                     <div class="control">
-                    <input class="input is-rounded" type="text" name="dietPlan" value=${hero.dietPlan}>
+                    <input class="input is-rounded" type="text" name="height" value=${hero.height}>
                     </div>
                 </div>
 
                 <div class="field">
-                <label class="label">Height</label>
-                <div class="control">
-                <input class="input is-rounded" type="text" name="height" value=${hero.height}>
+                    <label class="label">Weight</label>
+                    <div class="control">
+                    <input class="input is-rounded" type="text" name="weight" value=${hero.weight}>
+                    </div>
                 </div>
-            </div>
 
                 <div class="field">
-                <label class="label">Weight</label>
-                <div class="control">
-                <input class="input is-rounded" type="text" name="weight" value=${hero.weight}>
+                    <label class="label">BMI</label>
+                    <div class="control">
+                    <input class="input is-rounded" type="text" name="bmi" value=${hero.bmi}>
+                    </div>
                 </div>
-            </div>
-                <div class="field">
-                <label class="label">BMI</label>
-                <div class="control">
-                <input class="input is-rounded" type="text" name="bmi" value=${hero.bmi}>
-                </div>
-            </div>
-
 
                 <button id="cancel-button" class="button is-rounded is-danger" type="button">Cancel</button>
                 <button id="submit-button" class="button is-rounded is-dark" type="submit">Save</button>
