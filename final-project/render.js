@@ -4,15 +4,16 @@ export const renderHeroCard = function(hero) {
         `<div data-id="${hero.id}" class="card">
     
             <div style="background-color:${hero.backgroundColor}; padding: 20px; margin-top: 20px; text-align: center; border-radius: 5px 5px 0 0;">
-                <img style="border-radius:100%; border:5px solid #F8F8F8;" src=${hero.img} alt="image of superhero">
-                <h3 class="title is-3" style="color:${hero.color};">${hero.name}</h3>
+                <img style="border-radius:100%; border:5px solid #F8F8F8;" src=${hero.img} width = 150 alt="image of superhero">
+                <h3 class="title is-3" style="color:${hero.color};">${hero.first} ${hero.last}</h3>
             </div>
     
             <div style="color:#4A4A4A; background-color:#F8F8F8; padding:20px; border-radius: 0 0 5px 5px;">
-                <p><span style = "font-weight: bold;">Real Name: </span>${hero.first} ${hero.last}</p>
-                <p><span style = "font-weight: bold;">First Seen: </span>${hero.firstSeen.toLocaleDateString()}</p>
+                <p><span style = "font-weight: bold;">Diet Plan: </span>${hero.dietPlan}</p>
                 <br>
-                <p>${hero.description}</p>
+                <p><span style = "font-weight: bold;">Height: </span>${hero.height}</p>
+                <br>
+                <p><span style = "font-weight: bold;">Weight: </span>${hero.weight}</p>
                 <br>
                 <button id="edit-button" class="button is-rounded is-dark">Edit</button>
             </div>
@@ -23,26 +24,17 @@ export const renderHeroCard = function(hero) {
 
 
 export const renderHeroEditForm = function(hero) {
-    let date_obj = hero.firstSeen;
-    let date = ("0" + hero.firstSeen.getDate()).slice(-2);
-    let month = ("0" + (hero.firstSeen.getMonth() + 1)).slice(-2);
-    let first_seen_date = hero.firstSeen.getFullYear()+"-"+(month)+"-"+(date);
+
 
     return (
         `<div data-id="${hero.id}" class="card">
         
         <div style="background-color:${hero.backgroundColor}; padding: 20px; margin-top: 20px; text-align: center; border-radius: 5px 5px 0 0;">
-            <img style="border-radius:100%; border:5px solid #F8F8F8;" src=${hero.img} alt="image of superhero">
+            <img style="border-radius:100%; border:5px solid #F8F8F8;" src=${hero.img} width = 150 alt="image of superhero">
         </div>
 
         <div style="color:#4A4A4A; background-color:#F8F8F8; padding:20px; border-radius: 0 0 5px 5px;">
             <form>
-                <div class="field">
-                    <label class="label">Superhero Name</label>
-                    <div class="control">
-                    <input class="input is-rounded" type="text" name="name" value=${hero.name}>
-                    </div>
-                </div>
                 
                 <div class="field">
                     <label class="label">First Name</label>
@@ -59,18 +51,31 @@ export const renderHeroEditForm = function(hero) {
                 </div>
 
                 <div class="field">
-                    <label class="label">Date First Seen</label>
+                    <label class="label">Diet Plan</label>
                     <div class="control">
-                    <input class="input is-rounded" type="date" name="firstSeen" value=${first_seen_date}>
+                    <input class="input is-rounded" type="text" name="dietPlan" value=${hero.dietPlan}>
                     </div>
                 </div>
 
                 <div class="field">
-                    <label class="label">Description</label>
-                    <div class="control">
-                    <textarea class="textarea" name="description">${hero.description}</textarea>               
-                    </div>
+                <label class="label">Height</label>
+                <div class="control">
+                <input class="input is-rounded" type="text" name="height" value=${hero.height}>
                 </div>
+            </div>
+
+                <div class="field">
+                <label class="label">Weight</label>
+                <div class="control">
+                <input class="input is-rounded" type="text" name="weight" value=${hero.weight}>
+                </div>
+            </div>
+                <div class="field">
+                <label class="label">BMI</label>
+                <div class="control">
+                <input class="input is-rounded" type="text" name="bmi" value=${hero.bmi}>
+                </div>
+            </div>
 
 
                 <button id="cancel-button" class="button is-rounded is-danger" type="button">Cancel</button>
@@ -133,12 +138,12 @@ export const handleEditFormSubmit = function(event) {
 
     heroicData.forEach(hero_obj => {
         if (hero_obj.id === hero_id) {
-            hero_obj.name = form_inputs[0].value;
-            hero_obj.first = form_inputs[1].value;
-            hero_obj.last = form_inputs[2].value;
-            let input_date_parts=form_inputs[3].value.split('-');
-            hero_obj.firstSeen = new Date(input_date_parts[0], input_date_parts[1] - 1, input_date_parts[2]);
-            hero_obj.description = form_inputs[4].value;
+            hero_obj.first = form_inputs[0].value;
+            hero_obj.last = form_inputs[1].value;
+            hero_obj.dietPlan = form_inputs[2].value;
+            hero_obj.height = form_inputs[3].value;
+            hero_obj.weight = form_inputs[4].value;
+            hero_obj.bmi = form_inputs[5].value;
 
             new_hero_card=renderHeroCard(hero_obj);
         };
