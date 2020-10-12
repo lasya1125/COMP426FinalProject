@@ -1,20 +1,23 @@
 
+/**
+ * Given a hero object (see data.js), this function generates a "card" showing
+ *     the hero's name, information, and colors.
+ * @param hero  A hero object (see data.js)
+ */
 export const renderHeroCard = function(hero) {
+
     return (
         `<div data-id="${hero.id}" class="card">
     
             <div style="background-color:${hero.backgroundColor}; padding: 20px; margin-top: 20px; text-align: center; border-radius: 5px 5px 0 0;">
-                <img style="border-radius:100%; border:5px solid #F8F8F8;" src=${hero.img} width = 150 alt="image of superhero">
+                <img style="border-radius:100%; border:5px solid #F8F8F8;" src=${hero.img} alt="image of superhero">
                 <h3 class="title is-3" style="color:${hero.color};">${hero.first} ${hero.last}</h3>
             </div>
     
             <div style="color:#4A4A4A; background-color:#F8F8F8; padding:20px; border-radius: 0 0 5px 5px;">
                 <p><span style = "font-weight: bold;">Diet Plan: </span>${hero.dietPlan}</p>
-                <br>
                 <p><span style = "font-weight: bold;">Height: </span>${hero.height}</p>
-                <br>
                 <p><span style = "font-weight: bold;">Weight: </span>${hero.weight}</p>
-                <br>
                 <button id="edit-button" class="button is-rounded is-dark">Edit</button>
             </div>
         </div>`);
@@ -22,18 +25,22 @@ export const renderHeroCard = function(hero) {
 
 
 
-
+/**
+ * Given a hero object, this function generates a <form> which allows the
+ *     user to edit the fields of the hero. The form inputs should be
+ *     pre-populated with the initial values of the hero.
+ * @param hero  The hero object to edit (see data.js)
+ */
 export const renderHeroEditForm = function(hero) {
-
 
     return (
         `<div data-id="${hero.id}" class="card">
         
         <div style="background-color:${hero.backgroundColor}; padding: 20px; margin-top: 20px; text-align: center; border-radius: 5px 5px 0 0;">
-            <img style="border-radius:100%; border:5px solid #F8F8F8;" src=${hero.img} width = 150 alt="image of superhero">
+            <img style="border-radius:100%; border:5px solid #F8F8F8;" src=${hero.img} alt="image of superhero">
         </div>
 
-        <div style="color:#4A4A4A; background-color:#F8F8F8; padding:20px; border-radius: 0 0 5px 5px;">
+        <div style="color:#4A4A4A; background-color:#28B234; padding:20px; border-radius: 0 0 5px 5px;">
             <form>
                 
                 <div class="field">
@@ -50,19 +57,12 @@ export const renderHeroEditForm = function(hero) {
                     </div>
                 </div>
 
-                <div class="control">
-                    <label class="label">Diet Plan</label>
-                    <div class="select is-rounded">
-                        <select>
-                        <option value="balanced">Balanced</option>
-                        <option value="high-fiber">High-Fiber</option>
-                        <option value="high-protein">High-Protein</option>
-                        <option value="low-carb">Low-Carb</option>
-                        <option value="low-fat">Low-Fat</option>
-                        <option value="low-sodium">Low-Sodium</option>
-                        </select>
-                    </div>
-                </div>
+                <div class="field">
+                    <label class="label">Diet Plan</label>
+                    <div class="control">
+                    <input class="input is-rounded" type="text" name="dietPlan" value=${hero.dietPlan}>
+                    </div>
+                </div>
 
                 <div class="field">
                     <label class="label">Height</label>
@@ -70,7 +70,7 @@ export const renderHeroEditForm = function(hero) {
                     <input class="input is-rounded" type="text" name="height" value=${hero.height}>
                     </div>
                 </div>
-
+                
                 <div class="field">
                     <label class="label">Weight</label>
                     <div class="control">
@@ -78,12 +78,6 @@ export const renderHeroEditForm = function(hero) {
                     </div>
                 </div>
 
-                <div class="field">
-                    <label class="label">BMI</label>
-                    <div class="control">
-                    <input class="input is-rounded" type="text" name="bmi" value=${hero.bmi}>
-                    </div>
-                </div>
 
                 <button id="cancel-button" class="button is-rounded is-danger" type="button">Cancel</button>
                 <button id="submit-button" class="button is-rounded is-dark" type="submit">Save</button>
@@ -97,7 +91,14 @@ export const renderHeroEditForm = function(hero) {
 
 
 
+/**
+ * Handles the JavaScript event representing a user clicking on the "edit"
+ *     button for a particular hero.
+ * @param event  The JavaScript event that is being handled
+ */
 export const handleEditButtonPress = function(event) {
+    // TODO: Render the hero edit form for the clicked hero and replace the
+    //       hero's card in the DOM with their edit form instead
     
     const hero_id = $(event.target).closest(".card").data("id");
 
@@ -114,8 +115,14 @@ export const handleEditButtonPress = function(event) {
 
 
 
+/**
+ * Handles the JavaScript event representing a user clicking on the "cancel"
+ *     button for a particular hero.
+ * @param event  The JavaScript event that is being handled
+ */
 export const handleCancelButtonPress = function(event) {
-
+    // TODO: Render the hero card for the clicked hero and replace the
+    //       hero's edit form in the DOM with their card instead
     const hero_id = $(event.target).closest(".card").data("id");
 
     let hero_card;
@@ -131,7 +138,15 @@ export const handleCancelButtonPress = function(event) {
 
 
 
+/**
+ * Handles the JavaScript event representing a user clicking on the "cancel"
+ *     button for a particular hero.
+ * @param event  The JavaScript event that is being handled
+ */
 export const handleEditFormSubmit = function(event) {
+    // TODO: Render the hero card using the updated field values from the
+    //       submitted form and replace the hero's edit form in the DOM with
+    //       their updated card instead
 
     event.preventDefault();
 
@@ -150,7 +165,6 @@ export const handleEditFormSubmit = function(event) {
             hero_obj.dietPlan = form_inputs[2].value;
             hero_obj.height = form_inputs[3].value;
             hero_obj.weight = form_inputs[4].value;
-            hero_obj.bmi = form_inputs[5].value;
 
             new_hero_card=renderHeroCard(hero_obj);
         };
@@ -163,18 +177,36 @@ export const handleEditFormSubmit = function(event) {
 };
 
 
+
+/**
+ * Given an array of hero objects, this function converts the data into HTML,
+ *     loads it into the DOM, and adds event handlers.
+ * @param  heroes  An array of hero objects to load (see data.js)
+ */
 export const loadHeroesIntoDOM = function(heroes) {
     // Grab a jQuery reference to the root HTML element
     const $root = $('#root');
 
+    // TODO: Generate the heroes using renderHeroCard()
+    //       NOTE: Copy your code from a04 for this part
+
+    // TODO: Append the hero cards to the $root element
+    //       NOTE: Copy your code from a04 for this part
     for (let i=0; i<heroes.length; i++) {
         $root.append(renderHeroCard(heroes[i]));
     };
 
+    // TODO: Use jQuery to add handleEditButtonPress() as an event handler for
+    //       clicking the edit button
+
     $root.on('click', "#edit-button", handleEditButtonPress);
 
+    // TODO: Use jQuery to add handleEditFormSubmit() as an event handler for
+    //       submitting the form
     $root.on('click', "#submit-button", handleEditFormSubmit);
 
+    // TODO: Use jQuery to add handleCancelButtonPress() as an event handler for
+    //       clicking the cancel button
     $root.on('click', "#cancel-button", handleCancelButtonPress);
 
 };
