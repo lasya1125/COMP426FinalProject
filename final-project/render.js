@@ -57,12 +57,25 @@ export const renderHeroEditForm = function(hero) {
                     </div>
                 </div>
 
+
                 <div class="field">
                     <label class="label">Diet Plan</label>
                     <div class="control">
-                    <input class="input is-rounded" type="text" name="dietPlan" value=${hero.dietPlan}>
+                        <div class="select is-rounded">
+                            <select name="dietPlan">
+                                <option value=${hero.dietPlan} selected disabled hidden>Selected: ${hero.dietPlan}</option>
+                                <option value="Balanced">Balanced</option>
+                                <option value="High-Fiber">High-Fiber</option>
+                                <option value="High-Protein">High-Protein</option>
+                                <option value="Low-Carb">Low-Carb</option>
+                                <option value="Low-Fat">Low-Fat</option>
+                                <option value="Low-Sodium">Low-Sodium</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
+
+
 
                 <div class="field">
                     <label class="label">Height</label>
