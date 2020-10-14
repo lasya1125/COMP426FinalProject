@@ -13,7 +13,7 @@ const heroicData = [{
     id: 1,
     first: "Tony",
     last: "Stark",
-    img: "icons/ironman.png",
+    img: "profile_pics/emptyprofilepic.jpg",
     color: "#FFFFFF",
     backgroundColor: "#28B234",
     dietPlan: "Low Carb", 

@@ -10,7 +10,7 @@ export const renderHeroCard = function(hero) {
         `<div data-id="${hero.id}" class="card">
     
             <div style="background-color:${hero.backgroundColor}; padding: 20px; margin-top: 20px; text-align: center; border-radius: 5px 5px 0 0;">
-                <img style="border-radius:100%; border:5px solid #F8F8F8;" src=${hero.img} alt="image of superhero">
+                <img class= "profile-pic" style="border-radius:100%; border:5px solid #F8F8F8;" src=${hero.img} alt="image of superhero">
                 <h3 class="title is-3" style="color:${hero.color};">${hero.first} ${hero.last}</h3>
             </div>
     
