@@ -15,9 +15,12 @@ export const renderHeroCard = function(hero) {
             </div>
     
             <div style="color:#4A4A4A; background-color:#F8F8F8; padding:20px; border-radius: 0 0 5px 5px;">
-                <p><span style = "font-weight: bold;">Diet Plan: </span>${hero.dietPlan}</p>
-                <p><span style = "font-weight: bold;">Height: </span>${hero.height}</p>
-                <p><span style = "font-weight: bold;">Weight: </span>${hero.weight}</p>
+                <p><span style = "font-weight: bold; line-height:30px;">Diet Plan: </span>${hero.dietPlan}</p>
+                
+                <p><span style = "font-weight: bold; line-height:30px;">Height: </span>${hero.height}</p>
+                
+                <p><span style = "font-weight: bold; line-height:30px;">Weight: </span>${hero.weight}</p>
+                <br>
                 <button id="edit-button" class="button is-rounded is-dark">Edit</button>
             </div>
         </div>`);
