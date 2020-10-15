@@ -2,6 +2,13 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Log In</title>
+
+  <!-- Include links to CSS stylesheets below -->
+  <!-- TODO (optional): Add link to bulma here -->
+  <link rel="stylesheet" href="node_modules/bulma/css/bulma.css" />
+  <link href="./style.css" type="text/css" rel="stylesheet">
 <style>
 /* Style all input fields */
 input {
@@ -18,12 +25,14 @@ input {
 input[type=submit] {
   background-color: #4CAF50;
   color: white;
+  border-radius: 30px
 }
 
 /* Style the container for inputs */
 .container {
   background-color: #f1f1f1;
   padding: 20px;
+  border-radius: 30px
 }
 
 /* The message box is shown when the user clicks on the password field */
@@ -66,8 +75,16 @@ input[type=submit] {
 </head>
 <body>
 
-<h3>Password Validation</h3>
-<p>Try to submit the form.</p>
+<div class="header">
+    <h1 class="title is-2">My Meal Planner</h1>
+</div>
+
+<nav class="nav-bar">
+  <a class="active nav-button" href="./PassPage.html">Log In</a>
+  <a class="nav-button">About Us</a>
+</nav>
+
+<h3>Please enter a Username and Password below.</h3>
 
 <div class="container">
   <form action="/action_page.php">
