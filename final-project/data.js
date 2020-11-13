@@ -11,8 +11,8 @@
  */
 const heroicData = [{
     id: 1,
-    first: "Tony",
-    last: "Stark",
+    first: "Sara",
+    last: "Park",
     img: "profile_pics/emptyprofilepic.jpg",
     color: "#FFFFFF",
     backgroundColor: "#28B234",

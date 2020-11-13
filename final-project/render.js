@@ -40,7 +40,7 @@ export const renderHeroEditForm = function(hero) {
         `<div data-id="${hero.id}" class="card">
         
         <div style="background-color:${hero.backgroundColor}; padding: 20px; margin-top: 20px; text-align: center; border-radius: 5px 5px 0 0;">
-            <img style="border-radius:100%; border:5px solid #F8F8F8;" src=${hero.img} alt="image of superhero">
+            <img class= "profile-pic" style="border-radius:100%; border:5px solid #F8F8F8;" src=${hero.img} alt="image of superhero">
         </div>
 
         <div style="color:#4A4A4A; background-color:#28B234; padding:20px; border-radius: 0 0 5px 5px;">
@@ -64,21 +64,18 @@ export const renderHeroEditForm = function(hero) {
                 <div class="field">
                     <label class="label">Diet Plan</label>
                     <div class="control">
-                        <div class="select is-rounded">
-                            <select name="dietPlan">
-                                <option value=${hero.dietPlan} selected disabled hidden>Selected: ${hero.dietPlan}</option>
-                                <option value="Balanced">Balanced</option>
-                                <option value="High-Fiber">High-Fiber</option>
-                                <option value="High-Protein">High-Protein</option>
-                                <option value="Low-Carb">Low-Carb</option>
-                                <option value="Low-Fat">Low-Fat</option>
-                                <option value="Low-Sodium">Low-Sodium</option>
-                            </select>
-                        </div>
+                        <input class="input is-rounded" list="plans" name="dietPlan" id="dietPlan">
+                            <datalist id="plans">
+                                <option value="Balanced">
+                                <option value="High-Fiber">
+                                <option value="High-Protein">
+                                <option value="Low-Carb">
+                                <option value="Low-Fat">
+                                <option value="Low-Sodium">
+                            </datalist>
                     </div>
                 </div>
-
-
+            
 
                 <div class="field">
                     <label class="label">Height</label>
@@ -170,6 +167,8 @@ export const handleEditFormSubmit = function(event) {
 
     //gather form inputs into an array
     let form_inputs = $(event.target).closest("form").serializeArray();    
+    
+    //form_inputs.forEach(x => alert(x.name));
     
     // in heroicData, replace the old hero values with the input form values and render hero card for the editted hero
     let new_hero_card;
