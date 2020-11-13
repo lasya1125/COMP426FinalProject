@@ -1,0 +1,17 @@
+{
+    "0": {
+        "id": 0,
+        "title": "My First Book",
+        "price": 10.5,
+        "authors": [
+            "KMP",
+            "Lasya"
+        ]
+    },
+    "1": {
+        "id": 1,
+        "title": "Manual add check",
+        "price": 3.5,
+        "authors": ["Someone"]
+    }
+}
