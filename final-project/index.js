@@ -1,39 +1,69 @@
 const express = require('express');
 
 const app = express();
-const Book = require('./Book.js');
+const User = require('./User.js');
+
+// accepting all cors headers
+const cors = require('cors');
+app.use(cors());
 
 //installs parsers of different types
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-app.get('/book', (req, res) => {
-    res.json(Book.getAllIDs());
+app.get('/user', (req, res) => {
+    res.json(User.getAllIDs());
     return;
 });
 
-app.get('/book/:id', (req, res) => {
-    let b = Book.findByID(req.params.id);
-    if (b == null) {
-        res.status(404).send("Book not found");
+app.get('/user/:id', (req, res) => {
+    let u = User.findByID(req.params.id);
+    if (u == null) {
+        res.status(404).send("User not found");
         return;
     }
-    return res.json(b);
+    return res.json(u);
 });
 
-// Set this Access-Control-Allow-Methods to a comma separated list of all the methods we want to allow
-// and set Access-Control-Allow-Origin : *
-
-app.post('/book', (req, res) => {
-    let { title, price, authors } = req.body;
+app.post('/user', (req, res) => {
+    let { username, password, first, last, dietPlan, height, weight } = req.body;
     //need to add validity checkers for each of these values and send back status
-    let b = Book.createBook(title, price, authors);
-    if (b == null) {
+    let u = User.createUser(username, password, first, last, dietPlan, height, weight);
+    if (u == null) {
         res.status(400).send("Bad Request");
         return;
     }
-    return res.json(b);
+    return res.json(u);
 });
+
+app.put('/user/:id', (req, res) => {
+    let u = User.findByID(req.params.id);
+    if (u == null) {
+        res.status(404).send("User not found");
+        return;
+    }
+
+    let { username, password, first, last, dietPlan, height, weight } = req.body;
+    u.username = username;
+    u.password = password;
+    u.first = first;
+    u.last = last;
+    u.dietPlan = dietPlan;
+    u.height = height;
+    u.weight = weight;
+    u.updateUser();
+    res.json(u);
+});
+
+app.delete('/user/:id', (req, res) => {
+    let u = User.findByID(req.params.id);
+    if (u == null) {
+        res.status(404).send("User not found");
+        return;
+    }
+    u.deleteUser();
+    res.json(true);
+})
 
 const port = 3030;
 app.listen(port, () => {
