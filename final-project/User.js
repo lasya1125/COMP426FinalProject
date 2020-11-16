@@ -1,10 +1,10 @@
 const user_data = require('data-store')({ path: process.cwd() + '/final-project/data/user.json' })
 
 class User {
-    constructor(id, username, password, first, last, dietPlan, height, weight) {
+    constructor(id, owner, secret, first, last, dietPlan, height, weight) {
         this.id = id;
-        this.username = username;
-        this.password = password;
+        this.owner = owner;
+        this.secret = secret;
         this.first = first;
         this.last = last;
         this.dietPlan = dietPlan;
@@ -25,12 +25,17 @@ User.getAllIDs = () => {
     return Object.keys(user_data.data).map((id => { return parseInt(id); }));
 }
 
+//get all ids for owner
+User.getAllIDsForOwner = (owner) => {
+    return Object.keys(user_data.data).filter(id => user_data.get(id).owner == owner).map(id => parseInt(id));
+}
+
 User.findByID = (id) => {
     let udata = user_data.get(id);
     if (udata == null) {
         return null;
     }
-    return new User(udata.id, udata.username, udata.password, udata.first, udata.last, udata.dietPlan, udata.height, udata.weight);
+    return new User(udata.id, udata.owner, udata.secret, udata.first, udata.last, udata.dietPlan, udata.height, udata.weight);
 }
 
 User.nextID = User.getAllIDs().reduce((max, next_id) => {
@@ -40,10 +45,10 @@ User.nextID = User.getAllIDs().reduce((max, next_id) => {
     return max;
 }, -1) + 1;
 
-User.createUser = (username, password, first, last, dietPlan, height, weight) => {
+User.createUser = (owner, secret, first, last, dietPlan, height, weight) => {
     let id = User.nextID;
     User.nextID += 1;
-    let u = new User(id, username, password, first, last, dietPlan, height, weight);
+    let u = new User(id, owner, secret, first, last, dietPlan, height, weight);
     user_data.set(u.id.toString(), u);
     return u;
 }

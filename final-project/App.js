@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import './App.css';
-import axios from 'axios'
-import Recipe from './Recipe';
+//import React, { useState, useEffect } from 'react'
+//import './App.css';
+//import axios from './node_modules/axios'
+import Recipe from './Recipe.jsx';
 
 
 const App = () => {
     const API_ID = '37ec03f1'
     const API_KEY = '2083bb6ed4fb63408c27d6714fba7ae6'
 
-    const [recipe, setRecipe] = useState([])
-    const [search, setSearch] = useState('')
-    const [query, setQuery] = useState('chicken')
+    const [recipe, setRecipe] = React.useState([])
+    const [search, setSearch] = React.useState('')
+    const [query, setQuery] = React.useState('chicken')
 
-    useEffect(() => {
+    React.useEffect(() => {
         getRecipe()
     }, [query])
 
@@ -31,19 +31,25 @@ const App = () => {
         setSearch('')
     }
 
-    return ( 
-        <div className = "App" >
-        <form onSubmit = { updateChange }>
-        <input type = "text" value = { search } onChange = { getSearch} /> 
-        <button type = "submit" >
-            Search 
-        </button> 
-        </form > 
-            {recipe.map(e => ( 
-                <Recipe key = {e.recipe.label} title = { e.recipe.label } calories = { e.recipe.calories } image = { e.recipe.image } />
-            ))} 
-            </div>
+    return (` 
+        <div> Hello </div>`
+        // <div className = "App" >
+        // <form onSubmit = { updateChange }>
+        // <input type = "text" value = { search } onChange = { getSearch}/>
+        // <button type = "submit" >
+        //     Search 
+        // </button> 
+        // </form > 
+        //     {recipe.map(e => ( 
+        //         <Recipe key = {e.recipe.label} title = { e.recipe.label } calories = { e.recipe.calories } image = { e.recipe.image } />
+        //     ))} 
+        //     </div>
     );
 }
 
 export default App;
+
+$(function () {
+    const $root = $('#root');
+    $root.append(App);
+});
