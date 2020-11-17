@@ -1,7 +1,7 @@
 //import React, { useState, useEffect } from 'react'
 //import './App.css';
 //import axios from './node_modules/axios'
-import Recipe from './Recipe.jsx';
+import Recipe from './Recipe.js';
 
 
 const App = () => {
@@ -20,6 +20,7 @@ const App = () => {
         axios.get(`https://api.edamam.com/search?q=${query}&app_id=${API_ID}&app_key=${API_KEY}`)
             .then(response => setRecipe(response.data.hits))
     }
+  
 
     const getSearch = (event) => {
         setSearch(event.target.value)
